@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { FiMoon, FiHeart, FiUser } from "react-icons/fi";
+import { FiMoon, FiHeart, FiUser, FiSearch } from "react-icons/fi";
 
 const Header: FC = () => {
   return (
@@ -15,7 +15,7 @@ const Header: FC = () => {
         </Logo>
       </LogoBlock>
       <Search>
-        <SearchIcon src="./header/search.png" alt="search" />
+        <FiSearch />
         <Input placeholder="Seach 2M+ recipes" />
       </Search>
       <Nav>
@@ -30,7 +30,6 @@ const Header: FC = () => {
 export default Header;
 
 const Container = styled.div`
-  margin: 40px 280px 0px 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +42,6 @@ const LogoBlock = styled.div`
 const Logo = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 50px;
 `;
 
 const LogoImage = styled.img`
@@ -57,19 +55,16 @@ const LogoTitle = styled.p`
 const Search = styled.div`
   display: flex;
   align-items: center;
-  box-shadow: rgba(137, 137, 145, 0.1) 0px 3px 3px 0px;
+  box-shadow: rgb(137 137 145 / 10%) 0px 0px 10px 0px;
   border-radius: 30px;
   width: 600px;
   padding: 15px;
 `;
 
-const SearchIcon = styled.img`
-  margin-right: 15px;
-`;
-
 const Input = styled.input`
   border: none;
   color: #afafaf;
+  margin-left: 15px;
 
   &:focus {
     outline: none;

@@ -20,7 +20,11 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
 
 export default Layout;
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 1400px;
+  margin-top: 30px;
+`;
 
 const FruitLeft = styled.img`
   position: absolute;
