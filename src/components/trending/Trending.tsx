@@ -1,6 +1,7 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface Card {
@@ -48,11 +49,13 @@ const Trending: FC = () => {
       >
         {trending.map((trend) => (
           <SplideSlide key={trend.id}>
-            <Card>
-              <Image src={trend.image} alt="" />
-              <Name>{trend.title}</Name>
-              <Gradient />
-            </Card>
+            <Link to={`/recipe/${trend.id}`}>
+              <Card>
+                <Image src={trend.image} alt="" />
+                <Name>{trend.title}</Name>
+                <Gradient />
+              </Card>
+            </Link>
           </SplideSlide>
         ))}
       </Splide>
@@ -63,7 +66,10 @@ const Trending: FC = () => {
 export default Trending;
 
 const Container = styled.div`
-  margin-top: 60px;
+  @media (max-width: 1550px) {
+    margin: 0 auto;
+    max-width: 1200px;
+  }
 `;
 
 const Title = styled.p`
@@ -78,6 +84,11 @@ const Card = styled.div`
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: 1550px) {
+    width: 200px;
+    min-height: 200px;
+  }
 `;
 
 const Image = styled.img`

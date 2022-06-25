@@ -1,6 +1,7 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface Card {
@@ -39,6 +40,11 @@ const Vegetarian: FC = () => {
         aria-label="My Favorite Images"
         options={{
           perPage: 4,
+          breakpoints: {
+            // 1550: {
+            //   perPage: 3,
+            // },
+          },
           pagination: false,
           type: "loop",
           drag: "free",
@@ -48,11 +54,13 @@ const Vegetarian: FC = () => {
       >
         {vegetarians.map((vegan) => (
           <SplideSlide key={vegan.id}>
-            <Card>
-              <Image src={vegan.image} alt="" />
-              <Name>{vegan.title}</Name>
-              <Gradient />
-            </Card>
+            <Link to={`/recipe/${vegan.id}`}>
+              <Card>
+                <Image src={vegan.image} alt="" />
+                <Name>{vegan.title}</Name>
+                <Gradient />
+              </Card>
+            </Link>
           </SplideSlide>
         ))}
       </Splide>
@@ -63,7 +71,10 @@ const Vegetarian: FC = () => {
 export default Vegetarian;
 
 const Container = styled.div`
-  margin-top: 60px;
+  @media (max-width: 1550px) {
+    margin: 60px auto;
+    max-width: 1200px;
+  }
 `;
 
 const Title = styled.p`
@@ -78,6 +89,12 @@ const Card = styled.div`
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: 1550px) {
+    width: 280px;
+    /* height: 160px; */
+    min-height: 180px;
+  }
 `;
 
 const Image = styled.img`

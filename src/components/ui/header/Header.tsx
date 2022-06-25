@@ -2,17 +2,20 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import { FiMoon, FiHeart, FiUser, FiSearch } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Header: FC = () => {
   return (
     <Container>
       <LogoBlock>
-        <Logo>
-          <LogoImage src="./logo.png" alt="logo" />
-          <LogoTitle>
-            SIDE<b>SHEF</b>
-          </LogoTitle>
-        </Logo>
+        <Link to="/">
+          <Logo>
+            <LogoImage src="../../logo.png" alt="logo" />
+            <LogoTitle>
+              SIDE<b>SHEF</b>
+            </LogoTitle>
+          </Logo>
+        </Link>
       </LogoBlock>
       <Search>
         <FiSearch />
@@ -33,6 +36,14 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1820px) {
+    margin: 0px 150px;
+  }
+
+  @media (max-width: 1550px) {
+    margin: 0px 215px;
+  }
 `;
 
 const LogoBlock = styled.div`

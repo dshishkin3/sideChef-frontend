@@ -10,8 +10,8 @@ interface ILayoutProps {
 const Layout: FC<ILayoutProps> = ({ children }) => {
   return (
     <Container>
-      <FruitLeft src="./header/leftFruit.png" alt="left fruit" />
-      <FruitRight src="./header/rightFruit.png" alt="right fruit" />
+      <FruitLeft src="../../header/leftFruit.png" alt="left fruit" />
+      <FruitRight src="../../header/rightFruit.png" alt="right fruit" />
       <Header />
       {children}
     </Container>
@@ -21,9 +21,8 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
 export default Layout;
 
 const Container = styled.div`
-  margin: 0 auto;
+  margin: 30px auto;
   max-width: 1400px;
-  margin-top: 30px;
 `;
 
 const FruitLeft = styled.img`

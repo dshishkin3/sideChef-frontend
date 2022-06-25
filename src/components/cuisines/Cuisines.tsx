@@ -5,6 +5,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { cuisines } from "./data";
 
 import "@splidejs/react-splide/css";
+import { Link } from "react-router-dom";
 
 const Cuisines: FC = () => {
   return (
@@ -24,10 +25,12 @@ const Cuisines: FC = () => {
         >
           {cuisines.map((cuisine) => (
             <SplideSlide key={cuisine.id}>
-              <Pointer>
-                <ImageSlide src={cuisine.src} />
-                <TitleSlide>{cuisine.name}</TitleSlide>
-              </Pointer>
+              <Link to={`/cuisine/${cuisine.name}`}>
+                <Pointer>
+                  <ImageSlide src={cuisine.src} />
+                  <TitleSlide>{cuisine.name}</TitleSlide>
+                </Pointer>
+              </Link>
             </SplideSlide>
           ))}
         </Splide>
@@ -44,6 +47,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 1550px) {
+    margin-top: 60px;
+  }
 `;
 
 const Subtitle = styled.p`
