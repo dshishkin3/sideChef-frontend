@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { Link } from "react-router-dom";
 
 import { cuisines } from "./data";
 
 import "@splidejs/react-splide/css";
-import { Link } from "react-router-dom";
 
 const Cuisines: FC = () => {
   return (
@@ -21,6 +21,32 @@ const Cuisines: FC = () => {
             type: "loop",
             drag: "free",
             width: 1000,
+            breakpoints: {
+              1100: {
+                width: 800,
+                perPage: 5,
+              },
+              935: {
+                width: 700,
+              },
+              800: {
+                perPage: 4,
+                width: 500,
+              },
+              600: {
+                perPage: 3,
+                width: 320,
+              },
+              400: {
+                perPage: 3,
+                width: 300,
+              },
+
+              350: {
+                perPage: 2,
+                width: 250,
+              },
+            },
           }}
         >
           {cuisines.map((cuisine) => (
@@ -49,7 +75,11 @@ const Container = styled.div`
   align-items: center;
 
   @media (max-width: 1550px) {
-    margin-top: 60px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 700px) {
+    margin-top: 25px;
   }
 `;
 
@@ -57,11 +87,19 @@ const Subtitle = styled.p`
   color: #afafaf;
   font-size: 14px;
   margin-bottom: 10px;
+
+  @media (max-width: 700px) {
+    font-size: 12px;
+  }
 `;
 
 const Title = styled.p`
   color: #4d4d4d;
   font-size: 28px;
+
+  @media (max-width: 700px) {
+    font-size: 18px;
+  }
 `;
 
 const Slider = styled.div`
@@ -73,7 +111,11 @@ const Pointer = styled.div`
   display: inline-block;
 `;
 
-const ImageSlide = styled.img``;
+const ImageSlide = styled.img`
+  @media (max-width: 400px) {
+    width: 90px;
+  }
+`;
 
 const TitleSlide = styled.p`
   position: relative;
@@ -81,4 +123,10 @@ const TitleSlide = styled.p`
   color: #fff;
   font-size: 14px;
   letter-spacing: 1px;
+  font-weight: 500;
+
+  @media (max-width: 400px) {
+    top: -55px;
+    font-size: 12px;
+  }
 `;

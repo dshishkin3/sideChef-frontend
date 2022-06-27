@@ -45,6 +45,21 @@ const Trending: FC = () => {
           drag: "free",
           gap: 50,
           arrows: false,
+          width: 1400,
+          breakpoints: {
+            1400: {
+              gap: 0,
+            },
+            1170: {
+              perPage: 4,
+            },
+            820: {
+              perPage: 3,
+            },
+            340: {
+              perPage: 2,
+            },
+          },
         }}
       >
         {trending.map((trend) => (
@@ -66,28 +81,61 @@ const Trending: FC = () => {
 export default Trending;
 
 const Container = styled.div`
-  @media (max-width: 1550px) {
-    margin: 0 auto;
-    max-width: 1200px;
+  margin: 40px auto;
+  text-align: center;
+
+  @media (max-width: 1450px) {
+    margin: 40px 20px;
+  }
+
+  @media (max-width: 820px) {
+    margin: 40px 0px;
+  }
+
+  @media (max-width: 500px) {
+    margin: 20px 0px;
   }
 `;
 
 const Title = styled.p`
   font-size: 20px;
   margin-bottom: 20px;
+  text-align: start;
+
+  @media (max-width: 820px) {
+    margin-left: 25px;
+  }
 `;
 
 const Card = styled.div`
   cursor: pointer;
+  display: inline-block;
   min-height: 15rem;
   width: 15rem;
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
 
-  @media (max-width: 1550px) {
-    width: 200px;
-    min-height: 200px;
+  @media (max-width: 1400px) {
+    width: 13rem;
+  }
+
+  @media (max-width: 1035px) {
+    width: 11rem;
+  }
+
+  @media (max-width: 990px) {
+    min-height: 13rem;
+    width: 9rem;
+  }
+  @media (max-width: 650px) {
+    min-height: 9rem;
+    width: 8rem;
+  }
+
+  @media (max-width: 445px) {
+    min-height: 8rem;
+    width: 7rem;
   }
 `;
 
@@ -114,6 +162,11 @@ const Name = styled.p`
   display: flex;
   justify-content: center;
   height: 40%;
+
+  @media (max-width: 650px) {
+    font-size: 10px;
+    height: 60%;
+  }
 `;
 
 const Gradient = styled.div`

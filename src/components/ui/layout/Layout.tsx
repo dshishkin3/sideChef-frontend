@@ -29,10 +29,18 @@ const FruitLeft = styled.img`
   position: absolute;
   left: 0;
   top: 0;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const FruitRight = styled.img`
   position: absolute;
   top: 0;
   right: 0;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;

@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import { FiMoon, FiHeart, FiUser, FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Drawer from "./drawer/Drawer";
+import Nav from "./nav/Nav";
 
 const Header: FC = () => {
   return (
@@ -17,15 +19,14 @@ const Header: FC = () => {
           </Logo>
         </Link>
       </LogoBlock>
+      <Drawer />
       <Search>
-        <FiSearch />
+        <FiSearch size={18} />
         <Input placeholder="Seach 2M+ recipes" />
       </Search>
-      <Nav>
-        <Theme />
-        <Favorites />
-        <Profile />
-      </Nav>
+      <NavBlock>
+        <Nav />
+      </NavBlock>
     </Container>
   );
 };
@@ -42,7 +43,12 @@ const Container = styled.div`
   }
 
   @media (max-width: 1550px) {
-    margin: 0px 215px;
+    margin: 0px 225px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 700px) {
+    margin: 0px 20px;
   }
 `;
 
@@ -66,16 +72,27 @@ const LogoTitle = styled.p`
 const Search = styled.div`
   display: flex;
   align-items: center;
-  box-shadow: rgb(137 137 145 / 10%) 0px 0px 10px 0px;
+  /* box-shadow: rgb(137 137 145 / 10%) 0px 0px 10px 0px; */
   border-radius: 30px;
   width: 600px;
   padding: 15px;
+  background: #f5f5f5;
+
+  @media (max-width: 1300px) {
+    width: 100%;
+    margin: 20px 0px 0px 0px;
+  }
+
+  @media (max-width: 700px) {
+    padding: 10px;
+  }
 `;
 
 const Input = styled.input`
   border: none;
   color: #afafaf;
   margin-left: 15px;
+  width: 100%;
 
   &:focus {
     outline: none;
@@ -85,40 +102,8 @@ const Input = styled.input`
     color: #afafaf;
   }
 `;
-
-const Nav = styled.div``;
-
-const Theme = styled(FiMoon)`
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 1.5em;
-  margin-right: 20px;
-
-  &:hover {
-    color: #ff7b7b;
-    transition: all 0.3s;
-  }
-`;
-
-const Favorites = styled(FiHeart)`
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 1.5em;
-  margin-right: 20px;
-
-  &:hover {
-    color: #ff7b7b;
-    transition: all 0.3s;
-  }
-`;
-
-const Profile = styled(FiUser)`
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 1.5em;
-
-  &:hover {
-    color: #ff7b7b;
-    transition: all 0.3s;
+const NavBlock = styled.div`
+  @media (max-width: 1300px) {
+    display: none;
   }
 `;

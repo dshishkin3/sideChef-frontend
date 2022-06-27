@@ -45,8 +45,10 @@ ol[class] {
 }
 
 a {
+  color: inherit;
   text-decoration: none;
-  color: none;
+  border: none;
+  outline: none;
 }
 
 /* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
@@ -88,4 +90,26 @@ select {
   left: -3em;
   opacity: 0.3;
   top: 50px;
+}
+
+@media (max-width: 459px) {
+  .splide__arrow--next {
+    right: -2.2em;
+    top: 45px;
+  }
+
+  .splide__arrow--prev {
+    left: -2.2em;
+    top: 45px;
+  }
+}
+
+@media (max-width: 400px) {
+  .splide__arrow--next {
+    right: -2.2em;
+  }
+
+  .splide__arrow--prev {
+    left: -2.2em;
+  }
 }

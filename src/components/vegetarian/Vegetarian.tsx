@@ -1,6 +1,6 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -36,34 +36,44 @@ const Vegetarian: FC = () => {
   return (
     <Container>
       <Title>Our Vegetarian Picks</Title>
-      <Splide
-        aria-label="My Favorite Images"
-        options={{
-          perPage: 4,
-          breakpoints: {
-            // 1550: {
-            //   perPage: 3,
-            // },
-          },
-          pagination: false,
-          type: "loop",
-          drag: "free",
-          gap: 20,
-          arrows: false,
-        }}
-      >
-        {vegetarians.map((vegan) => (
-          <SplideSlide key={vegan.id}>
-            <Link to={`/recipe/${vegan.id}`}>
-              <Card>
-                <Image src={vegan.image} alt="" />
-                <Name>{vegan.title}</Name>
-                <Gradient />
-              </Card>
-            </Link>
-          </SplideSlide>
-        ))}
-      </Splide>
+      <Slider>
+        <Splide
+          aria-label="My Favorite Images"
+          options={{
+            perPage: 4,
+            width: 1400,
+            breakpoints: {
+              1320: {
+                perPage: 3,
+                width: 1350,
+              },
+              820: {
+                perPage: 2,
+              },
+              340: {
+                perPage: 1,
+              },
+            },
+            pagination: false,
+            type: "loop",
+            drag: "free",
+            gap: 20,
+            arrows: false,
+          }}
+        >
+          {vegetarians.map((vegan) => (
+            <SplideSlide key={vegan.id}>
+              <Link to={`/recipe/${vegan.id}`}>
+                <Card>
+                  <Image src={vegan.image} alt="" />
+                  <Name>{vegan.title}</Name>
+                  <Gradient />
+                </Card>
+              </Link>
+            </SplideSlide>
+          ))}
+        </Splide>
+      </Slider>
     </Container>
   );
 };
@@ -71,29 +81,63 @@ const Vegetarian: FC = () => {
 export default Vegetarian;
 
 const Container = styled.div`
-  @media (max-width: 1550px) {
-    margin: 60px auto;
-    max-width: 1200px;
+  margin: 40px auto;
+  text-align: center;
+
+  @media (max-width: 1450px) {
+    margin: 40px 20px;
+  }
+
+  @media (max-width: 820px) {
+    margin: 40px 0px;
+  }
+
+  @media (max-width: 500px) {
+    margin: 20px 0px;
   }
 `;
+
+const Slider = styled.div``;
 
 const Title = styled.p`
   font-size: 20px;
   margin-bottom: 20px;
+  text-align: start;
+
+  @media (max-width: 820px) {
+    margin-left: 25px;
+  }
 `;
 
 const Card = styled.div`
   cursor: pointer;
+  display: inline-block;
   min-height: 15rem;
   width: 21rem;
-  border-radius: 2rem;
   overflow: hidden;
   position: relative;
+  border-radius: 2rem;
 
-  @media (max-width: 1550px) {
-    width: 280px;
-    /* height: 160px; */
-    min-height: 180px;
+  @media (max-width: 1400px) {
+    width: 20rem;
+  }
+
+  @media (max-width: 1035px) {
+    width: 19rem;
+  }
+
+  @media (max-width: 990px) {
+    min-height: 13rem;
+    width: 16rem;
+  }
+  @media (max-width: 650px) {
+    min-height: 9rem;
+    width: 12rem;
+  }
+
+  @media (max-width: 445px) {
+    min-height: 7rem;
+    width: 10rem;
   }
 `;
 
@@ -120,6 +164,11 @@ const Name = styled.p`
   display: flex;
   justify-content: center;
   height: 40%;
+
+  @media (max-width: 650px) {
+    font-size: 10px;
+    height: 50%;
+  }
 `;
 
 const Gradient = styled.div`
