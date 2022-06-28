@@ -23,7 +23,7 @@ const Theme = styled(FiMoon)`
   margin-right: 20px;
 
   &:hover {
-    color: #ff7b7b;
+    color: #ff950a;
     transition: all 0.3s;
   }
 `;
@@ -35,7 +35,7 @@ const Favorites = styled(FiHeart)`
   margin-right: 20px;
 
   &:hover {
-    color: #ff7b7b;
+    color: #ff950a;
     transition: all 0.3s;
   }
 `;
@@ -46,7 +46,7 @@ const Profile = styled(FiUser)`
   font-size: 1.5em;
 
   &:hover {
-    color: #ff7b7b;
+    color: #ff950a;
     transition: all 0.3s;
   }
 `;

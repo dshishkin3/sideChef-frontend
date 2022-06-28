@@ -1,8 +1,9 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import axios from "axios";
 import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import VeganSkeleton from "./Skeleton";
 
 interface Card {
   id: number;
@@ -11,27 +12,28 @@ interface Card {
 }
 
 const Vegetarian: FC = () => {
-  const [vegetarians, setVegetarians] = useState<Card[]>([]);
+  // const { items, status } = useTypedSelector((state) => state.veganRecipes);
+
+  const [items, setItems] = useState<Card[]>([]);
+  const [status, setStatus] = useState<"loading" | "error" | "completed">(
+    "loading"
+  );
 
   useEffect(() => {
-    getVegetarian();
+    getVegan();
   }, []);
 
-  const getVegetarian = async () => {
+  const getVegan = async () => {
     const check = localStorage.getItem("vegetarian");
-
     if (check) {
-      setVegetarians(JSON.parse(check));
-    } else {
-      const res = await axios.get(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=12&tags=vegetarian`
-      );
-
-      localStorage.setItem("vegetarian", JSON.stringify(res.data.recipes));
-      setVegetarians(res.data.recipes);
-      console.log(res.data.recipes);
+      setItems(JSON.parse(check));
+      setStatus("completed");
     }
   };
+
+  const skeletons = [...new Array(4)].map((_, index) => (
+    <VeganSkeleton key={index} />
+  ));
 
   return (
     <Container>
@@ -61,17 +63,19 @@ const Vegetarian: FC = () => {
             arrows: false,
           }}
         >
-          {vegetarians.map((vegan) => (
-            <SplideSlide key={vegan.id}>
-              <Link to={`/recipe/${vegan.id}`}>
-                <Card>
-                  <Image src={vegan.image} alt="" />
-                  <Name>{vegan.title}</Name>
-                  <Gradient />
-                </Card>
-              </Link>
-            </SplideSlide>
-          ))}
+          {status === "loading"
+            ? skeletons
+            : items.map((vegan) => (
+                <SplideSlide key={vegan.id}>
+                  <Link to={`/recipe/${vegan.id}`}>
+                    <Card>
+                      <Image src={vegan.image} alt="" />
+                      <Name>{vegan.title}</Name>
+                      <Gradient />
+                    </Card>
+                  </Link>
+                </SplideSlide>
+              ))}
         </Splide>
       </Slider>
     </Container>

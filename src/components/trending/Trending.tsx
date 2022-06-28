@@ -1,8 +1,9 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import TrendSkeleton from "./Skeleton";
 
 interface Card {
   id: number;
@@ -11,7 +12,12 @@ interface Card {
 }
 
 const Trending: FC = () => {
-  const [trending, setTrending] = useState<Card[]>([]);
+  // const { items, status } = useTypedSelector((state) => state.trendRecipes);
+
+  const [items, setItems] = useState<Card[]>([]);
+  const [status, setStatus] = useState<"loading" | "error" | "completed">(
+    "loading"
+  );
 
   useEffect(() => {
     getTrending();
@@ -19,19 +25,15 @@ const Trending: FC = () => {
 
   const getTrending = async () => {
     const check = localStorage.getItem("trending");
-
     if (check) {
-      setTrending(JSON.parse(check));
-    } else {
-      const res = await axios.get(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=12`
-      );
-
-      localStorage.setItem("trending", JSON.stringify(res.data.recipes));
-      setTrending(res.data.recipes);
-      console.log(res.data.recipes);
+      setItems(JSON.parse(check));
+      setStatus("completed");
     }
   };
+
+  const skeletons = [...new Array(5)].map((_, index) => (
+    <TrendSkeleton key={index} />
+  ));
 
   return (
     <Container>
@@ -62,17 +64,19 @@ const Trending: FC = () => {
           },
         }}
       >
-        {trending.map((trend) => (
-          <SplideSlide key={trend.id}>
-            <Link to={`/recipe/${trend.id}`}>
-              <Card>
-                <Image src={trend.image} alt="" />
-                <Name>{trend.title}</Name>
-                <Gradient />
-              </Card>
-            </Link>
-          </SplideSlide>
-        ))}
+        {status === "loading"
+          ? skeletons
+          : items.map((trend) => (
+              <SplideSlide key={trend.id}>
+                <Link to={`/recipe/${trend.id}`}>
+                  <Card>
+                    <Image src={trend.image} alt="" />
+                    <Name>{trend.title}</Name>
+                    <Gradient />
+                  </Card>
+                </Link>
+              </SplideSlide>
+            ))}
       </Splide>
     </Container>
   );

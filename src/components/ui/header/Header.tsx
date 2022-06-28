@@ -1,33 +1,48 @@
-import { FC } from "react";
+import { FC, useRef, useState } from "react";
 import styled from "styled-components";
-
-import { FiMoon, FiHeart, FiUser, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
+import { CgMenu } from "react-icons/cg";
 import { Link } from "react-router-dom";
+
 import Drawer from "./drawer/Drawer";
 import Nav from "./nav/Nav";
+import useOnClickOutside from "../../../hooks/onClickOutside";
 
 const Header: FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const node = useRef(null);
+
+  useOnClickOutside(node, () => {
+    if (isOpen) {
+      setIsOpen(!isOpen);
+    }
+  });
+
   return (
-    <Container>
-      <LogoBlock>
-        <Link to="/">
-          <Logo>
-            <LogoImage src="../../logo.png" alt="logo" />
-            <LogoTitle>
-              SIDE<b>SHEF</b>
-            </LogoTitle>
-          </Logo>
-        </Link>
-      </LogoBlock>
-      <Drawer />
-      <Search>
-        <FiSearch size={18} />
-        <Input placeholder="Seach 2M+ recipes" />
-      </Search>
-      <NavBlock>
-        <Nav />
-      </NavBlock>
-    </Container>
+    <header>
+      <Container>
+        <LogoBlock>
+          <Link to="/">
+            <Logo>
+              <LogoImage src="../../logo.png" alt="logo" />
+              <LogoTitle>
+                SIDE<b>SHEF</b>
+              </LogoTitle>
+            </Logo>
+          </Link>
+        </LogoBlock>
+        <BugerMenu onClick={() => setIsOpen(!isOpen)} />
+        <Search>
+          <FiSearch size={18} />
+          <Input placeholder="Seach 2M+ recipes" />
+        </Search>
+        <NavBlock>
+          <Nav />
+        </NavBlock>
+        <Drawer isOpen={isOpen} setIsOpen={setIsOpen} node={node} />
+      </Container>
+    </header>
   );
 };
 
@@ -63,6 +78,7 @@ const Logo = styled.div`
 
 const LogoImage = styled.img`
   margin-right: 10px;
+  width: 38px;
 `;
 
 const LogoTitle = styled.p`
@@ -72,7 +88,6 @@ const LogoTitle = styled.p`
 const Search = styled.div`
   display: flex;
   align-items: center;
-  /* box-shadow: rgb(137 137 145 / 10%) 0px 0px 10px 0px; */
   border-radius: 30px;
   width: 600px;
   padding: 15px;
@@ -105,5 +120,14 @@ const Input = styled.input`
 const NavBlock = styled.div`
   @media (max-width: 1300px) {
     display: none;
+  }
+`;
+
+const BugerMenu = styled(CgMenu)`
+  cursor: pointer;
+  font-size: 1.5em;
+  display: none;
+  @media (max-width: 1300px) {
+    display: block;
   }
 `;
