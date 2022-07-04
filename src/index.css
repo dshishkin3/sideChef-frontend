@@ -83,24 +83,24 @@ select {
 .splide__arrow--next {
   right: -3em;
   opacity: 0.3;
-  top: 50px;
+  top: 68px;
 }
 
 .splide__arrow--prev {
   left: -3em;
   opacity: 0.3;
-  top: 50px;
+  top: 68px;
 }
 
 @media (max-width: 459px) {
   .splide__arrow--next {
     right: -2.2em;
-    top: 45px;
+    top: 61px;
   }
 
   .splide__arrow--prev {
     left: -2.2em;
-    top: 45px;
+    top: 61px;
   }
 }
 

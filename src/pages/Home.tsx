@@ -6,6 +6,7 @@ import Vegetarian from "../components/vegetarian/Vegetarian";
 import { fetchTrend } from "../store/recipes/trendRecipes/asyncActions";
 import { fetchVegan } from "../store/recipes/veganRecipes/asyncActions";
 import { useAppDispatch } from "../store/store";
+import Cuisines from "../components/ui/cuisines/Cuisines";
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ const Home: FC = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <Cuisines />
       <Vegetarian />
       <Trending />
     </motion.div>

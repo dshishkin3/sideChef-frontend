@@ -88,6 +88,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 80px;
 
   @media (max-width: 1550px) {
     margin-top: 40px;
@@ -131,7 +132,7 @@ const Pointer = styled.div`
 const ImageSlide = styled.img<ActiveImage>`
   box-shadow: ${(props) =>
     props.active === props.title
-      ? "0px 0px 12px 10px rgb(29 221 104 / 75%)"
+      ? "0px 0px 12px 8px rgb(29 221 104 / 75%)"
       : ""};
 
   transition: all 0.2s;

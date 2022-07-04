@@ -1,12 +1,21 @@
-import { FC, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  FC,
+  FormEvent,
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { CgMenu } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Drawer from "./drawer/Drawer";
 import Nav from "./nav/Nav";
 import useOnClickOutside from "../../../hooks/onClickOutside";
+import Search from "./search/Search";
 
 const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +42,7 @@ const Header: FC = () => {
           </Link>
         </LogoBlock>
         <BugerMenu onClick={() => setIsOpen(!isOpen)} />
-        <Search>
-          <FiSearch size={18} />
-          <Input placeholder="Seach 2M+ recipes" />
-        </Search>
+        <Search />
         <NavBlock>
           <Nav />
         </NavBlock>
@@ -85,38 +91,38 @@ const LogoTitle = styled.p`
   letter-spacing: 2px;
 `;
 
-const Search = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 30px;
-  width: 600px;
-  padding: 15px;
-  background: #f5f5f5;
+// const Search = styled.div`
+//   display: flex;
+//   align-items: center;
+//   border-radius: 30px;
+//   width: 600px;
+//   padding: 15px;
+//   background: #f5f5f5;
 
-  @media (max-width: 1300px) {
-    width: 100%;
-    margin: 20px 0px 0px 0px;
-  }
+//   @media (max-width: 1300px) {
+//     width: 100%;
+//     margin: 20px 0px 0px 0px;
+//   }
 
-  @media (max-width: 700px) {
-    padding: 10px;
-  }
-`;
+//   @media (max-width: 700px) {
+//     padding: 10px;
+//   }
+// `;
 
-const Input = styled.input`
-  border: none;
-  color: #afafaf;
-  margin-left: 15px;
-  width: 100%;
+// const Input = styled.input`
+//   border: none;
+//   color: #afafaf;
+//   margin-left: 15px;
+//   width: 100%;
 
-  &:focus {
-    outline: none;
-  }
+//   &:focus {
+//     outline: none;
+//   }
 
-  &::placeholder {
-    color: #afafaf;
-  }
-`;
+//   &::placeholder {
+//     color: #afafaf;
+//   }
+// `;
 const NavBlock = styled.div`
   @media (max-width: 1300px) {
     display: none;

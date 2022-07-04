@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Card from "../components/ui/card/Card";
+import Cuisines from "../components/ui/cuisines/Cuisines";
 import { Cuisine } from "../store/cuisine/cuisine.types";
 import { useAppDispatch } from "../store/store";
 
@@ -44,18 +45,22 @@ const CuisineBlock: FC = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {status === "loading" ? (
-        <h1>loading...</h1>
-      ) : (
-        items.map((item) => (
-          <Card
-            key={item.id}
-            title={item.title}
-            image={item.image}
-            id={item.id}
-          />
-        ))
-      )}
+      <Cuisines />
+      <Items>
+        {" "}
+        {status === "loading" ? (
+          <h1>loading...</h1>
+        ) : (
+          items.map((item) => (
+            <Card
+              key={item.id}
+              title={item.title}
+              image={item.image}
+              id={item.id}
+            />
+          ))
+        )}
+      </Items>
     </Conitainer>
   );
 };
@@ -64,9 +69,6 @@ export default CuisineBlock;
 
 const Conitainer = styled(motion.div)`
   margin-top: 50px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
 
   @media (max-width: 1450px) {
     margin: 50px 20px;
@@ -78,4 +80,10 @@ const Conitainer = styled(motion.div)`
   @media (max-width: 350px) {
     justify-content: center;
   }
+`;
+
+const Items = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;

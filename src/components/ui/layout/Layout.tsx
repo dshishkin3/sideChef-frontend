@@ -15,7 +15,6 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       <FruitLeft src="../../header/leftFruit.png" alt="left fruit" />
       <FruitRight src="../../header/rightFruit.png" alt="right fruit" />
       <Header />
-      <Cuisines />
       {children}
     </Container>
   );
