@@ -1,12 +1,81 @@
-import React, { FC } from "react";
-import Cuisines from "../components/cuisines/Cuisines";
+import { motion } from "framer-motion";
+import React, { FC, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
-const Cuisine: FC = () => {
+import Card from "../components/ui/card/Card";
+import { Cuisine } from "../store/cuisine/cuisine.types";
+import { useAppDispatch } from "../store/store";
+
+const CuisineBlock: FC = () => {
+  const [items, setItems] = useState<Cuisine[]>([]);
+  const [status, setStatus] = useState<"loading" | "error" | "completed">(
+    "loading"
+  );
+
+  // const { items, status } = useTypedSelector((state) => state.cuisine);
+
+  const params = useParams();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    // getRecipes();
+    getCuisine();
+  }, []);
+
+  // const getRecipes = async () => {
+  //   dispatch(fetchCuisine(String(params.name)));
+  //   localStorage.setItem("cuisine",JSON.stringify(items))
+  // };
+
+  const getCuisine = async () => {
+    const check = localStorage.getItem("cuisine");
+    if (check) {
+      setItems(JSON.parse(check));
+      setStatus("completed");
+    }
+  };
+
   return (
-    <div>
-      <Cuisines />
-    </div>
+    <Conitainer
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      {status === "loading" ? (
+        <h1>loading...</h1>
+      ) : (
+        items.map((item) => (
+          <Card
+            key={item.id}
+            title={item.title}
+            image={item.image}
+            id={item.id}
+          />
+        ))
+      )}
+    </Conitainer>
   );
 };
 
-export default Cuisine;
+export default CuisineBlock;
+
+const Conitainer = styled(motion.div)`
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media (max-width: 1450px) {
+    margin: 50px 20px;
+  }
+
+  @media (max-width: 500px) {
+    margin: 50px 20px;
+  }
+  @media (max-width: 350px) {
+    justify-content: center;
+  }
+`;

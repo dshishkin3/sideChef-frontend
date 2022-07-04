@@ -1,13 +1,24 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { cuisines } from "./data";
 
 import "@splidejs/react-splide/css";
 
+interface ActiveImage {
+  active?: string;
+  title?: string;
+}
+
 const Cuisines: FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    console.log(pathname.slice(9));
+  }, [pathname]);
+
   return (
     <Container>
       <Subtitle>PERSONALIZE YOUR EXPERIENCE</Subtitle>
@@ -18,9 +29,9 @@ const Cuisines: FC = () => {
           options={{
             perPage: 7,
             pagination: false,
-            type: "loop",
+            // type: "loop",
             drag: "free",
-            width: 1000,
+            width: 900,
             breakpoints: {
               1100: {
                 width: 800,
@@ -53,7 +64,11 @@ const Cuisines: FC = () => {
             <SplideSlide key={cuisine.id}>
               <Link to={`/cuisine/${cuisine.name}`}>
                 <Pointer>
-                  <ImageSlide src={cuisine.src} />
+                  <ImageSlide
+                    src={cuisine.src}
+                    active={pathname.slice(9)}
+                    title={cuisine.name}
+                  />
                   <TitleSlide>{cuisine.name}</TitleSlide>
                 </Pointer>
               </Link>
@@ -109,9 +124,19 @@ const Slider = styled.div`
 const Pointer = styled.div`
   cursor: pointer;
   display: inline-block;
+  margin-top: 18px;
+  /* margin-right: 30px; */
 `;
 
-const ImageSlide = styled.img`
+const ImageSlide = styled.img<ActiveImage>`
+  box-shadow: ${(props) =>
+    props.active === props.title
+      ? "0px 0px 12px 10px rgb(29 221 104 / 75%)"
+      : ""};
+
+  transition: all 0.2s;
+  border-radius: 50%;
+
   @media (max-width: 400px) {
     width: 90px;
   }

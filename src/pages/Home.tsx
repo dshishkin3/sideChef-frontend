@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from "react";
+import { motion } from "framer-motion";
 
-import Cuisines from "../components/cuisines/Cuisines";
 import Trending from "../components/trending/Trending";
 import Vegetarian from "../components/vegetarian/Vegetarian";
 import { fetchTrend } from "../store/recipes/trendRecipes/asyncActions";
@@ -11,7 +11,7 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getRecipes();
+    // getRecipes();
   }, []);
 
   const getRecipes = async () => {
@@ -20,11 +20,15 @@ const Home: FC = () => {
   };
 
   return (
-    <div>
-      <Cuisines />
+    <motion.div
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Vegetarian />
       <Trending />
-    </div>
+    </motion.div>
   );
 };
 

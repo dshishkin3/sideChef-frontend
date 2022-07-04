@@ -1,5 +1,7 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import Cuisines from "../cuisines/Cuisines";
 
 import Header from "../header/Header";
 
@@ -13,6 +15,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       <FruitLeft src="../../header/leftFruit.png" alt="left fruit" />
       <FruitRight src="../../header/rightFruit.png" alt="right fruit" />
       <Header />
+      <Cuisines />
       {children}
     </Container>
   );
