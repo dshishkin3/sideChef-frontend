@@ -1,12 +1,12 @@
+import { motion } from "framer-motion";
 import React, { FC, useEffect } from "react";
 import { FiHeart, FiPlusCircle } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { fetchRecipe } from "../store/recipes/recipe/asyncActions";
 import { useAppDispatch } from "../store/store";
-
-const image = "../image.png";
 
 const Recipe: FC = () => {
   const params = useParams();
@@ -27,7 +27,12 @@ const Recipe: FC = () => {
       {status === "loading" ? (
         <h1>loading...</h1>
       ) : (
-        <Container>
+        <Container
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <Basic>
             <Information>
               <Title>{item.title}</Title>
@@ -79,7 +84,7 @@ const Recipe: FC = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   margin-top: 80px;
 
   @media (max-width: 1450px) {

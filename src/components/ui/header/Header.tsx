@@ -10,7 +10,7 @@ import {
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { CgMenu } from "react-icons/cg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import Drawer from "./drawer/Drawer";
 import Nav from "./nav/Nav";

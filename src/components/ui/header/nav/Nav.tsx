@@ -1,13 +1,18 @@
 import { FC } from "react";
 import { FiHeart, FiMoon, FiUser } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav: FC = () => {
   return (
     <Container>
       <Theme />
-      <Favorites />
-      <Profile />
+      <Link to="/favorites">
+        <Favorites />
+      </Link>
+      <Link to="/profile">
+        <Profile />
+      </Link>
     </Container>
   );
 };
