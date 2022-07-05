@@ -29,19 +29,28 @@ h4,
 p,
 ul[class],
 ol[class],
-li,
+/* li, */
 figure,
 figcaption,
 blockquote,
 dl,
 dd {
+  padding: 0;
   margin: 0;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
-ul[class],
+/* ul[class],
 ol[class] {
   list-style: none;
+} */
+
+ol {
+  padding-left: 16px;
+}
+
+li {
+  margin-bottom: 10px;
 }
 
 a {

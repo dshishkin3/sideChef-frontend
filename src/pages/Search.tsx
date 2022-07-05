@@ -20,15 +20,15 @@ const Search: FC = () => {
   }, []);
 
   return (
-    <Conitainer
-      animate={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <Conitainer>
       <Cuisines />
       <Title>133,526 suggested recipes</Title>
-      <Recipes>
+      <Recipes
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         {status === "loading" ? (
           <h1>loading...</h1>
         ) : (
@@ -46,7 +46,7 @@ const Search: FC = () => {
   );
 };
 
-const Conitainer = styled(motion.div)`
+const Conitainer = styled.div`
   margin-top: 50px;
 
   @media (max-width: 1450px) {
@@ -61,7 +61,7 @@ const Conitainer = styled(motion.div)`
   }
 `;
 
-const Recipes = styled.div`
+const Recipes = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

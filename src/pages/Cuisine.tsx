@@ -39,14 +39,14 @@ const CuisineBlock: FC = () => {
   };
 
   return (
-    <Conitainer
-      animate={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <Conitainer>
       <Cuisines />
-      <Items>
+      <Items
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         {" "}
         {status === "loading" ? (
           <h1>loading...</h1>
@@ -67,7 +67,7 @@ const CuisineBlock: FC = () => {
 
 export default CuisineBlock;
 
-const Conitainer = styled(motion.div)`
+const Conitainer = styled.div`
   margin-top: 50px;
 
   @media (max-width: 1450px) {
@@ -82,7 +82,7 @@ const Conitainer = styled(motion.div)`
   }
 `;
 
-const Items = styled.div`
+const Items = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
