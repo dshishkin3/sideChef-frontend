@@ -3,6 +3,8 @@ import { FC } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Layout from "../components/ui/layout/Layout";
+import Notification from "../components/ui/notification/Notification";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 import Auth from "../pages/Auth";
 import Cuisine from "../pages/Cuisine";
 import Favorites from "../pages/Favorites";
@@ -13,6 +15,8 @@ import Search from "../pages/Search";
 
 export const AppRouter: FC = () => {
   const location = useLocation();
+
+  const { message } = useTypedSelector((state) => state.user);
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -27,6 +31,7 @@ export const AppRouter: FC = () => {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<Home />} />
         </Routes>
+        {message && <Notification />}
       </Layout>
     </AnimatePresence>
   );

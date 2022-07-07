@@ -1,7 +1,7 @@
 export interface IUserState {
   user: User | null;
   status: Status;
-  message: null | string;
+  message: null | string[];
 }
 
 export type User = {
@@ -13,6 +13,7 @@ export type User = {
 };
 
 export enum Status {
+  DEFAULT = "default",
   LOADING = "loading",
   SUCCESS = "completed",
   ERROR = "error",

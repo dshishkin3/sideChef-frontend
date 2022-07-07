@@ -1,7 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { login, loginError, register, registerError } from "./user.slice";
+import {
+  login,
+  loginError,
+  loginPending,
+  register,
+  registerError,
+  registerPending,
+} from "./user.slice";
 
 interface ILogin {
   email: string;
@@ -18,6 +25,7 @@ export const loginHandler = createAsyncThunk(
   "user/login",
   async ({ email, password }: ILogin, { dispatch }) => {
     try {
+      dispatch(loginPending());
       const res = await axios.post(
         "https://side-shef.herokuapp.com/auth/login",
         {
@@ -37,6 +45,7 @@ export const registerHandler = createAsyncThunk(
   "user/register",
   async ({ username, email, password }: IRegister, { dispatch }) => {
     try {
+      dispatch(registerPending());
       const res = await axios.post(
         "https://side-shef.herokuapp.com/auth/registration",
         {
