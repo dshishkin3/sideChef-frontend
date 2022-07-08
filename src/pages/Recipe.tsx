@@ -7,20 +7,22 @@ import styled from "styled-components";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { fetchRecipe } from "../store/recipes/recipe/asyncActions";
 import { useAppDispatch } from "../store/store";
+import { addToFavoritesHandler } from "../store/user/asyncActions";
 
 const Recipe: FC = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
 
   const { item, status } = useTypedSelector((state) => state.recipe);
+  const { user } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(fetchRecipe(Number(params.id)));
   }, []);
 
-  useEffect(() => {
-    console.log(item);
-  }, [item]);
+  const addToFavorites = () => {
+    dispatch(addToFavoritesHandler({ recipe: item, id: user!._id }));
+  };
 
   return (
     <>
@@ -47,7 +49,7 @@ const Recipe: FC = () => {
                   <span>{item.servings}</span> Servings
                 </Detail>
               </Details>
-              <Favorites>
+              <Favorites onClick={addToFavorites}>
                 <Heart />
                 <p>Add recipe to favorites</p>
               </Favorites>

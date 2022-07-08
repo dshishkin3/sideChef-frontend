@@ -1,8 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Recipe } from "../recipes/recipes.types";
 
 import {
+  addToFavorites,
   checkUser,
+  deleteFromFavorites,
   login,
   loginError,
   loginPending,
@@ -74,12 +77,9 @@ export const updateHandler = createAsyncThunk(
   "user/update",
   async ({ form }: { form: IUpdate }) => {
     try {
-      const res = await axios.post(
-        `https://side-shef.herokuapp.com/users/change`,
-        {
-          ...form,
-        }
-      );
+      await axios.post(`https://side-shef.herokuapp.com/users/change`, {
+        ...form,
+      });
       fetchUser(form._id);
       alert("User data updated");
     } catch (error: any) {
@@ -97,6 +97,47 @@ export const fetchUser = createAsyncThunk(
         { _id: id }
       );
       dispatch(checkUser(res.data));
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
+);
+
+export const addToFavoritesHandler = createAsyncThunk(
+  "user/addToFavorites",
+  async function (
+    { recipe, id }: { recipe: Recipe; id: string },
+    { dispatch }
+  ) {
+    try {
+      await axios.post(`https://side-shef.herokuapp.com/users/addToFavorites`, {
+        recipe: recipe,
+        _id: id,
+      });
+      dispatch(addToFavorites({ recipe, id }));
+      alert("Recipe added to favorites!");
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
+);
+
+export const deleteFromFavoritesHandler = createAsyncThunk(
+  "user/deleteFromFavorites",
+  async function (
+    { idProduct, id }: { idProduct: number; id: string },
+    { dispatch }
+  ) {
+    try {
+      await axios.post(
+        `https://side-shef.herokuapp.com/users/deleteFromFavorites`,
+        {
+          idProduct: idProduct,
+          _id: id,
+        }
+      );
+      dispatch(deleteFromFavorites({ idProduct, id }));
+      alert("Recipe deleted from favorites!");
     } catch (error: any) {
       console.log(error);
     }

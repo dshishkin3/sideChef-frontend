@@ -5,7 +5,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Layout from "../components/ui/layout/Layout";
 import Notification from "../components/ui/notification/Notification";
 import { useTypedSelector } from "../hooks/useTypedSelector";
-import Auth from "../pages/Auth";
+
 import Cuisine from "../pages/Cuisine";
 import Favorites from "../pages/Favorites";
 import Home from "../pages/Home";
@@ -26,7 +26,7 @@ export const AppRouter: FC = () => {
           <Route path="/cuisine/:name" element={<Cuisine />} />
           <Route path="/recipe/:id" element={<Recipe />} />
           <Route path="/search/:name" element={<Search />} />
-          <Route path="/auth" element={<Auth />} />
+
           <Route path="/profile" element={<Profile />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<Home />} />

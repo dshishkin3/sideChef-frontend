@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Recipe } from "../recipes/recipes.types";
 
 import { IUserState, Status, User } from "./user.types";
 
@@ -51,6 +52,22 @@ export const userSlice = createSlice({
       state.message = null;
       state.status = Status.DEFAULT;
     },
+    addToFavorites: (
+      state,
+      action: PayloadAction<{ recipe: Recipe; id: string }>
+    ) => {
+      state.user?.favorites.push(action.payload.recipe);
+    },
+    deleteFromFavorites: (
+      state,
+      action: PayloadAction<{ idProduct: number; id: string }>
+    ) => {
+      if (state.user !== null) {
+        state!.user.favorites = state!.user.favorites.filter(
+          (item) => item.id !== action.payload.idProduct
+        );
+      }
+    },
   },
 });
 
@@ -67,4 +84,6 @@ export const {
   checkUser,
   setError,
   logout,
+  addToFavorites,
+  deleteFromFavorites,
 } = userSlice.actions;

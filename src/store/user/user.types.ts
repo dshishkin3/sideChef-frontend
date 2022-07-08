@@ -1,3 +1,5 @@
+import { Recipe } from "../recipes/recipes.types";
+
 export interface IUserState {
   user: User | null;
   status: Status;
@@ -9,7 +11,7 @@ export type User = {
   username: string;
   email: string;
   password: string;
-  favorites: [];
+  favorites: Recipe[];
 };
 
 export enum Status {
