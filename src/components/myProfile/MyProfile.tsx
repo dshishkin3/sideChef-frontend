@@ -2,53 +2,95 @@ import React, { FC, useState } from "react";
 import { BiHide } from "react-icons/bi";
 import styled from "styled-components";
 
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useAppDispatch } from "../../store/store";
+import {
+  fetchUser,
+  IUpdate,
+  updateHandler,
+} from "../../store/user/asyncActions";
+import { logout, setError } from "../../store/user/user.slice";
+import { validateForm } from "./validate";
+
 import Button from "../ui/button/Button";
 import Input from "../ui/input/Input";
 
 const MyProfile: FC = () => {
+  const { user } = useTypedSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
+
   const [hidePass, setHidePass] = useState(false);
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState(user!.username);
+  const [email, setEmail] = useState(user!.email);
+  const [password, setPassword] = useState("***********");
+
+  const changeInfo = async () => {
+    const form: IUpdate = {
+      _id: user!._id,
+      username,
+      email,
+    };
+
+    if (password !== "***********") {
+      form.password = password;
+    }
+
+    if (validateForm(form)) {
+      await dispatch(updateHandler({ form }));
+      await dispatch(fetchUser(user!._id));
+    } else {
+      dispatch(setError("Fields filled out incorrectly"));
+    }
+  };
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
 
   return (
     <Container>
       <Title>Personal data</Title>
-      <Form>
-        <TextArea>
-          <p>Username</p>
-          <Input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </TextArea>
-        <TextArea>
-          <p>Email</p>
-          <Input
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-          />
-        </TextArea>
-        <TextArea>
-          <p>Password</p>
-          <Password>
+
+      {!user ? (
+        <h1>loading...</h1>
+      ) : (
+        <Form>
+          <TextArea>
+            <p>Username</p>
             <Input
-              placeholder="Password"
-              type={!hidePass ? "password" : "text"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type="text"
+              placeholder={user.username}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
-            <HidePass onClick={() => setHidePass(!hidePass)} />
-          </Password>
-        </TextArea>
-      </Form>
-      <Button onClick={() => {}}>Save</Button>
-      <Logout>Logout</Logout>
+          </TextArea>
+          <TextArea>
+            <p>Email</p>
+            <Input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+            />
+          </TextArea>
+          <TextArea>
+            <p>Password</p>
+            <Password>
+              <Input
+                placeholder="Password"
+                type={!hidePass ? "password" : "text"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <HidePass onClick={() => setHidePass(!hidePass)} />
+            </Password>
+          </TextArea>
+        </Form>
+      )}
+      <Button onClick={changeInfo}>Save</Button>
+      <Logout onClick={logoutHandler}>Logout</Logout>
     </Container>
   );
 };

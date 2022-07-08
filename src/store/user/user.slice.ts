@@ -38,6 +38,19 @@ export const userSlice = createSlice({
       state.status = Status.ERROR;
       state.message = action.payload;
     },
+    checkUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      state.status = Status.SUCCESS;
+      state.message = null;
+    },
+    setError: (state, action: PayloadAction<string>) => {
+      state.message = [action.payload];
+    },
+    logout: (state) => {
+      state.user = null;
+      state.message = null;
+      state.status = Status.DEFAULT;
+    },
   },
 });
 
@@ -51,4 +64,7 @@ export const {
   register,
   registerPending,
   registerError,
+  checkUser,
+  setError,
+  logout,
 } = userSlice.actions;
