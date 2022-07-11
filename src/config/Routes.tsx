@@ -3,7 +3,8 @@ import { FC } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Layout from "../components/ui/layout/Layout";
-import Notification from "../components/ui/notification/Notification";
+import NotificationError from "../components/ui/notification/NotificationError";
+import NotificationSuccess from "../components/ui/notification/NotificationSuccess";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 
 import Cuisine from "../pages/Cuisine";
@@ -16,7 +17,7 @@ import Search from "../pages/Search";
 export const AppRouter: FC = () => {
   const location = useLocation();
 
-  const { message } = useTypedSelector((state) => state.user);
+  const { message, error } = useTypedSelector((state) => state.user);
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -26,12 +27,12 @@ export const AppRouter: FC = () => {
           <Route path="/cuisine/:name" element={<Cuisine />} />
           <Route path="/recipe/:id" element={<Recipe />} />
           <Route path="/search/:name" element={<Search />} />
-
           <Route path="/profile" element={<Profile />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<Home />} />
         </Routes>
-        {message && <Notification />}
+        {error && <NotificationError />}
+        {message && <NotificationSuccess />}
       </Layout>
     </AnimatePresence>
   );

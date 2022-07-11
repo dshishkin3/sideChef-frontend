@@ -3,6 +3,7 @@ import { Recipe } from "../recipes/recipes.types";
 export interface IUserState {
   user: User | null;
   status: Status;
+  error: null | string[];
   message: null | string[];
 }
 

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { IoIosClose } from "react-icons/io";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 
-const Notification: FC = () => {
+const NotificationSuccess: FC = () => {
   const { message } = useTypedSelector((state) => state.user);
 
   const [open, setOpen] = useState(!!message);
@@ -24,7 +24,7 @@ const Notification: FC = () => {
       >
         <Collapse in={!!message && open}>
           <Alert
-            severity="error"
+            severity="success"
             style={{ alignItems: "center" }}
             action={
               <IconButton
@@ -56,4 +56,4 @@ const Container = styled.div`
   bottom: 20px;
 `;
 
-export default Notification;
+export default NotificationSuccess;

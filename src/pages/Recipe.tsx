@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React, { FC, useEffect } from "react";
-import { FiHeart, FiPlusCircle } from "react-icons/fi";
+import { FiHeart, FiPlusCircle, FiLock } from "react-icons/fi";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -49,10 +49,17 @@ const Recipe: FC = () => {
                   <span>{item.servings}</span> Servings
                 </Detail>
               </Details>
-              <Favorites onClick={addToFavorites}>
-                <Heart />
-                <p>Add recipe to favorites</p>
-              </Favorites>
+              {user ? (
+                <Favorites onClick={addToFavorites}>
+                  <Heart />
+                  <p>Add recipe to favorites</p>
+                </Favorites>
+              ) : (
+                <LockBlock>
+                  <Lock />
+                  <LockText>Log in for further actions</LockText>
+                </LockBlock>
+              )}
               <Desc dangerouslySetInnerHTML={{ __html: item.instructions }} />
             </Information>
             <Image alt="recipe image" src={item.image} />
@@ -178,22 +185,43 @@ const Favorites = styled.div`
       transition: all 0.3s;
     }
   }
-
-  & svg {
-    color: #ff950a;
-
-    &:hover {
-      color: #ff950a;
-      transition: all 0.3s;
-    }
-  }
 `;
 
 const Heart = styled(FiHeart)`
   cursor: pointer;
+  color: #ff950a;
   transition: all 0.3s;
   font-size: 1.5em;
   margin-right: 15px;
+
+  &:hover {
+    color: #ff950a;
+    transition: all 0.3s;
+  }
+`;
+
+const LockBlock = styled.div`
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  margin: 30px 0px;
+  border-bottom: 1px solid #e5e5e5;
+  border-radius: 30%;
+  padding: 10px;
+`;
+
+const Lock = styled(FiLock)`
+  cursor: not-allowed;
+  transition: all 0.3s;
+  font-size: 1.5em;
+  margin-right: 15px;
+  color: #505050;
+`;
+
+const LockText = styled.h1`
+  color: #505050;
+  font-size: 16px;
+  font-weight: 500;
 `;
 
 const Image = styled.img`

@@ -115,7 +115,6 @@ export const addToFavoritesHandler = createAsyncThunk(
         _id: id,
       });
       dispatch(addToFavorites({ recipe, id }));
-      alert("Recipe added to favorites!");
     } catch (error: any) {
       console.log(error);
     }
@@ -137,7 +136,6 @@ export const deleteFromFavoritesHandler = createAsyncThunk(
         }
       );
       dispatch(deleteFromFavorites({ idProduct, id }));
-      alert("Recipe deleted from favorites!");
     } catch (error: any) {
       console.log(error);
     }

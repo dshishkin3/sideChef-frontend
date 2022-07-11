@@ -6,6 +6,7 @@ import { IUserState, Status, User } from "./user.types";
 const initialState: IUserState = {
   user: null,
   status: Status.DEFAULT,
+  error: null,
   message: null,
 };
 
@@ -19,11 +20,12 @@ export const userSlice = createSlice({
     login: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.status = Status.SUCCESS;
-      state.message = null;
+      state.message = ["You have successfully logged in!"];
     },
     loginError: (state, action: any) => {
       state.user = null;
-      state.message = action.payload;
+      state.message = null;
+      state.error = action.payload;
       state.status = Status.ERROR;
     },
     registerPending: (state) => {
@@ -32,17 +34,20 @@ export const userSlice = createSlice({
     register: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.status = Status.SUCCESS;
-      state.message = null;
+      state.error = null;
+      state.message = ["You have successfully registered!"];
     },
     registerError: (state, action: any) => {
       state.user = null;
       state.status = Status.ERROR;
-      state.message = action.payload;
+      state.error = action.payload;
+      state.message = null;
     },
     checkUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.status = Status.SUCCESS;
       state.message = null;
+      state.error = null;
     },
     setError: (state, action: PayloadAction<string>) => {
       state.message = [action.payload];
@@ -57,6 +62,7 @@ export const userSlice = createSlice({
       action: PayloadAction<{ recipe: Recipe; id: string }>
     ) => {
       state.user?.favorites.push(action.payload.recipe);
+      state.message = ["Recipe added to favorites!"];
     },
     deleteFromFavorites: (
       state,
@@ -67,6 +73,7 @@ export const userSlice = createSlice({
           (item) => item.id !== action.payload.idProduct
         );
       }
+      state.message = ["Recipe removed from favorites!"];
     },
   },
 });
