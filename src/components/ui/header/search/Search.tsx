@@ -6,11 +6,12 @@ import styled from "styled-components";
 const Search: FC = () => {
   const [search, setSearch] = useState("");
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const searchEnterHandler = (e: any) => {
     if (e.key === "Enter") {
       navigate(`/search/${search}`);
+      setSearch("");
     }
   };
 

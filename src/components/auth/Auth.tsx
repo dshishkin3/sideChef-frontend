@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
 import styled from "styled-components";
+import { BiHide } from "react-icons/bi";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useAppDispatch } from "../../store/store";
 import { loginHandler, registerHandler } from "../../store/user/asyncActions";
 import Progress from "../ui/progress/Progress";
-import { BiHide } from "react-icons/bi";
 import Button from "../ui/button/Button";
 import Input from "../ui/input/Input";
 

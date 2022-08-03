@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { FC } from "react";
 import styled from "styled-components";
+
 import Auth from "../components/auth/Auth";
 import MyProfile from "../components/myProfile/MyProfile";
 import { useTypedSelector } from "../hooks/useTypedSelector";

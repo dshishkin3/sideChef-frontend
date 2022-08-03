@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import React, { FC } from "react";
 import styled from "styled-components";
-
 import { AiOutlineDelete } from "react-icons/ai";
+
 import Card from "../components/ui/card/Card";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useAppDispatch } from "../store/store";

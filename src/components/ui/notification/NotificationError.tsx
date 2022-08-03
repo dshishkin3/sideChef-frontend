@@ -2,8 +2,8 @@ import { Alert, Box, Collapse, IconButton } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-
 import { IoIosClose } from "react-icons/io";
+
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 
 const NotificationError: FC = () => {

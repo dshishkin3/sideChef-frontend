@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+
 import Card from "../components/ui/card/Card";
 import Cuisines from "../components/ui/cuisines/Cuisines";
 import { useTypedSelector } from "../hooks/useTypedSelector";
@@ -15,14 +16,15 @@ const Search: FC = () => {
   const { items, status } = useTypedSelector((state) => state.search);
 
   useEffect(() => {
-    console.log(params.name);
     dispatch(fetchSearch(String(params.name)));
   }, []);
 
   return (
     <Conitainer>
       <Cuisines />
-      <Title>133,526 suggested recipes</Title>
+      <Title>
+        {items.length} suggested recipes '{params.name}'
+      </Title>
       <Recipes
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
@@ -70,8 +72,9 @@ const Recipes = styled(motion.div)`
 const Title = styled.p`
   text-align: center;
   margin-bottom: 40px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 18px;
+  color: #6d6d6d;
 `;
 
 export default Search;

@@ -5,6 +5,8 @@ import styled from "styled-components";
 
 import Card from "../components/ui/card/Card";
 import Cuisines from "../components/ui/cuisines/Cuisines";
+import { useTypedSelector } from "../hooks/useTypedSelector";
+import { fetchCuisine } from "../store/cuisine/asyncActions";
 import { Cuisine } from "../store/cuisine/cuisine.types";
 import { useAppDispatch } from "../store/store";
 
@@ -27,7 +29,7 @@ const CuisineBlock: FC = () => {
 
   // const getRecipes = async () => {
   //   dispatch(fetchCuisine(String(params.name)));
-  //   localStorage.setItem("cuisine",JSON.stringify(items))
+  //   localStorage.setItem("cuisine", JSON.stringify(items));
   // };
 
   const getCuisine = async () => {

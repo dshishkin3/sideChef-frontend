@@ -1,7 +1,5 @@
-import { FC, ReactNode, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { FC, ReactNode } from "react";
 import styled from "styled-components";
-import Cuisines from "../cuisines/Cuisines";
 
 import Header from "../header/Header";
 

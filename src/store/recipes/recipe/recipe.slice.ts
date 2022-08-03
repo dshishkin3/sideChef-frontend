@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { Status, Recipe, IRecipeState } from "../recipes.types";
+
 import { fetchRecipe } from "./asyncActions";
 
 const initialState: IRecipeState = {

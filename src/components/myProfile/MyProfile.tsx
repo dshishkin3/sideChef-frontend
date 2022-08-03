@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react";
-import { BiHide } from "react-icons/bi";
+import { FC, useState } from "react";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import styled from "styled-components";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -10,10 +10,10 @@ import {
   updateHandler,
 } from "../../store/user/asyncActions";
 import { logout, setError } from "../../store/user/user.slice";
-import { validateForm } from "./validate";
-
 import Button from "../ui/button/Button";
 import Input from "../ui/input/Input";
+
+import { validateForm } from "./validate";
 
 const MyProfile: FC = () => {
   const { user } = useTypedSelector((state) => state.user);
@@ -24,7 +24,7 @@ const MyProfile: FC = () => {
 
   const [username, setUsername] = useState(user!.username);
   const [email, setEmail] = useState(user!.email);
-  const [password, setPassword] = useState("***********");
+  const [password, setPassword] = useState("");
 
   const changeInfo = async () => {
     const form: IUpdate = {
@@ -33,7 +33,7 @@ const MyProfile: FC = () => {
       email,
     };
 
-    if (password !== "***********") {
+    if (password !== "") {
       form.password = password;
     }
 
@@ -79,12 +79,13 @@ const MyProfile: FC = () => {
             <p>Password</p>
             <Password>
               <Input
-                placeholder="Password"
+                placeholder="************"
                 type={!hidePass ? "password" : "text"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <HidePass onClick={() => setHidePass(!hidePass)} />
+              {!hidePass && <HidePass onClick={() => setHidePass(!hidePass)} />}
+              {hidePass && <OpenPass onClick={() => setHidePass(!hidePass)} />}
             </Password>
           </TextArea>
         </Form>
@@ -132,7 +133,48 @@ const Form = styled.div``;
 
 const Password = styled.div``;
 
-const HidePass = styled(BiHide)`
+const HidePass = styled(AiFillEyeInvisible)`
+  font-size: 1.3em;
+  color: #696969;
+  cursor: pointer;
+  position: relative;
+  top: -52px;
+  right: -397px;
+
+  @media (max-width: 1300px) {
+    right: -370px;
+  }
+
+  @media (max-width: 450px) {
+    right: -340px;
+  }
+
+  @media (max-width: 420px) {
+    right: -320px;
+  }
+
+  @media (max-width: 395px) {
+    right: -300px;
+  }
+
+  @media (max-width: 380px) {
+    right: -280px;
+  }
+
+  @media (max-width: 360px) {
+    right: -250px;
+  }
+
+  @media (max-width: 325px) {
+    right: -220px;
+  }
+
+  @media (max-width: 295px) {
+    right: -150px;
+  }
+`;
+
+const OpenPass = styled(AiFillEye)`
   font-size: 1.3em;
   color: #696969;
   cursor: pointer;

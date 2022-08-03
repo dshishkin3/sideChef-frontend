@@ -67,16 +67,16 @@ const Trending: FC = () => {
         {status === "loading"
           ? skeletons
           : items.map((trend) => (
-              <SplideSlide key={trend.id}>
-                <Link to={`/recipe/${trend.id}`}>
-                  <Card>
-                    <Image src={trend.image} alt="" />
-                    <Name>{trend.title}</Name>
-                    <Gradient />
-                  </Card>
-                </Link>
-              </SplideSlide>
-            ))}
+            <SplideSlide key={trend.id}>
+              <Link to={`/recipe/${trend.id}`}>
+                <Card>
+                  <Image src={trend.image} alt="" />
+                  <Name>{trend.title}</Name>
+                  <Gradient />
+                </Card>
+              </Link>
+            </SplideSlide>
+          ))}
       </Splide>
     </Container>
   );

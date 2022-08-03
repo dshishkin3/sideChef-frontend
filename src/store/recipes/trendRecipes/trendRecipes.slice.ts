@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { IRecipesState, Status } from "../recipes.types";
+
 import { fetchTrend } from "./asyncActions";
 
 const initialState: IRecipesState = {

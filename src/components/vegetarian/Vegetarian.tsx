@@ -1,6 +1,7 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
+
 import Card from "../ui/card/Card";
 
 import VeganSkeleton from "./Skeleton";
@@ -66,10 +67,10 @@ const Vegetarian: FC = () => {
           {status === "loading"
             ? skeletons
             : items.map((vegan) => (
-                <SplideSlide key={vegan.id}>
-                  <Card image={vegan.image} title={vegan.title} id={vegan.id} />
-                </SplideSlide>
-              ))}
+              <SplideSlide key={vegan.id}>
+                <Card image={vegan.image} title={vegan.title} id={vegan.id} />
+              </SplideSlide>
+            ))}
         </Splide>
       </Slider>
     </Container>

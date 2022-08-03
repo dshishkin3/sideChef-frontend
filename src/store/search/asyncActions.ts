@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
 import { Recipe } from "./search.types";
 
 export const fetchSearch = createAsyncThunk(

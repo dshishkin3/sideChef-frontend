@@ -1,20 +1,12 @@
-import {
-  ChangeEvent,
-  FC,
-  FormEvent,
-  KeyboardEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FC, useRef, useState } from "react";
 import styled from "styled-components";
-import { FiSearch } from "react-icons/fi";
 import { CgMenu } from "react-icons/cg";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import useOnClickOutside from "../../../hooks/onClickOutside";
 
 import Drawer from "./drawer/Drawer";
 import Nav from "./nav/Nav";
-import useOnClickOutside from "../../../hooks/onClickOutside";
 import Search from "./search/Search";
 
 const Header: FC = () => {

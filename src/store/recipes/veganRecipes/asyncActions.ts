@@ -10,6 +10,7 @@ export const fetchVegan = createAsyncThunk<{ recipes: Recipe[] }>(
       `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=12&tags=vegetarian`
     );
 
+    localStorage.setItem("vegetarian", JSON.stringify(data.recipes));
     return data;
   }
 );

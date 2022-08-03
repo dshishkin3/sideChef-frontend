@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link, useLocation } from "react-router-dom";
@@ -14,10 +14,6 @@ interface ActiveImage {
 
 const Cuisines: FC = () => {
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    console.log(pathname.slice(9));
-  }, [pathname]);
 
   return (
     <Container>

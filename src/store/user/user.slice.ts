@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { Recipe } from "../recipes/recipes.types";
 
 import { IUserState, Status, User } from "./user.types";
@@ -46,8 +47,10 @@ export const userSlice = createSlice({
     checkUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.status = Status.SUCCESS;
-      state.message = null;
       state.error = null;
+    },
+    setMessage: (state, action: PayloadAction<string>) => {
+      state.message = [action.payload];
     },
     setError: (state, action: PayloadAction<string>) => {
       state.message = [action.payload];
@@ -89,6 +92,7 @@ export const {
   registerPending,
   registerError,
   checkUser,
+  setMessage,
   setError,
   logout,
   addToFavorites,

@@ -1,4 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
+
 import { cuisineReducer } from "./cuisine/cuisine.slice";
 import { recipeReducer } from "./recipes/recipe/recipe.slice";
 import { trendRecipesReducer } from "./recipes/trendRecipes/trendRecipes.slice";
