@@ -52,6 +52,14 @@ const Favorites: FC = () => {
 
 const Container = styled(motion.div)`
   margin-top: 80px;
+
+  @media (max-width: 1300px) {
+    padding: 0px 20px;
+  }
+
+  @media (max-width: 500px) {
+    margin-top: 30px;
+  }
 `;
 
 const Title = styled.p`
@@ -71,9 +79,12 @@ const Error = styled.p`
 const Recipes = styled.div`
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   & div {
     margin-right: 20px;
+    margin-bottom: 20px;
   }
 `;
 

@@ -33,5 +33,3 @@ export const trendRecipesSlice = createSlice({
 
 export const trendRecipesReducer = trendRecipesSlice.reducer;
 export const trendRecipesActions = trendRecipesSlice.actions;
-
-export const {} = trendRecipesSlice.actions;

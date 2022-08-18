@@ -1,7 +1,9 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import React, { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 import TrendSkeleton from "./Skeleton";
 
@@ -12,24 +14,7 @@ interface Card {
 }
 
 const Trending: FC = () => {
-  // const { items, status } = useTypedSelector((state) => state.trendRecipes);
-
-  const [items, setItems] = useState<Card[]>([]);
-  const [status, setStatus] = useState<"loading" | "error" | "completed">(
-    "loading"
-  );
-
-  useEffect(() => {
-    getTrending();
-  }, []);
-
-  const getTrending = async () => {
-    const check = localStorage.getItem("trending");
-    if (check) {
-      setItems(JSON.parse(check));
-      setStatus("completed");
-    }
-  };
+  const { items, status } = useTypedSelector((state) => state.trendRecipes);
 
   const skeletons = [...new Array(5)].map((_, index) => (
     <TrendSkeleton key={index} />
@@ -67,16 +52,16 @@ const Trending: FC = () => {
         {status === "loading"
           ? skeletons
           : items.map((trend) => (
-            <SplideSlide key={trend.id}>
-              <Link to={`/recipe/${trend.id}`}>
-                <Card>
-                  <Image src={trend.image} alt="" />
-                  <Name>{trend.title}</Name>
-                  <Gradient />
-                </Card>
-              </Link>
-            </SplideSlide>
-          ))}
+              <SplideSlide key={trend.id}>
+                <Link to={`/recipe/${trend.id}`}>
+                  <Card>
+                    <Image src={trend.image} alt="" />
+                    <Name>{trend.title}</Name>
+                    <Gradient />
+                  </Card>
+                </Link>
+              </SplideSlide>
+            ))}
       </Splide>
     </Container>
   );

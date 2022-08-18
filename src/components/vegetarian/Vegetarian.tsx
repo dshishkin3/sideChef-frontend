@@ -1,36 +1,14 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import Card from "../ui/card/Card";
 
 import VeganSkeleton from "./Skeleton";
 
-interface Card {
-  id: number;
-  title: string;
-  image: string;
-}
-
 const Vegetarian: FC = () => {
-  // const { items, status } = useTypedSelector((state) => state.veganRecipes);
-
-  const [items, setItems] = useState<Card[]>([]);
-  const [status, setStatus] = useState<"loading" | "error" | "completed">(
-    "loading"
-  );
-
-  useEffect(() => {
-    getVegan();
-  }, []);
-
-  const getVegan = async () => {
-    const check = localStorage.getItem("vegetarian");
-    if (check) {
-      setItems(JSON.parse(check));
-      setStatus("completed");
-    }
-  };
+  const { items, status } = useTypedSelector((state) => state.veganRecipes);
 
   const skeletons = [...new Array(4)].map((_, index) => (
     <VeganSkeleton key={index} />
@@ -67,10 +45,10 @@ const Vegetarian: FC = () => {
           {status === "loading"
             ? skeletons
             : items.map((vegan) => (
-              <SplideSlide key={vegan.id}>
-                <Card image={vegan.image} title={vegan.title} id={vegan.id} />
-              </SplideSlide>
-            ))}
+                <SplideSlide key={vegan.id}>
+                  <Card image={vegan.image} title={vegan.title} id={vegan.id} />
+                </SplideSlide>
+              ))}
         </Splide>
       </Slider>
     </Container>

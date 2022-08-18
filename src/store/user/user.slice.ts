@@ -15,6 +15,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState: initialState,
   reducers: {
+    // login
     loginPending: (state) => {
       state.status = Status.LOADING;
     },
@@ -29,6 +30,7 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.status = Status.ERROR;
     },
+    // register
     registerPending: (state) => {
       state.status = Status.LOADING;
     },
@@ -44,22 +46,26 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.message = null;
     },
+    // check user
     checkUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.status = Status.SUCCESS;
       state.error = null;
     },
+    // notofications
     setMessage: (state, action: PayloadAction<string>) => {
       state.message = [action.payload];
     },
     setError: (state, action: PayloadAction<string>) => {
       state.message = [action.payload];
     },
+    // logout
     logout: (state) => {
       state.user = null;
       state.message = null;
       state.status = Status.DEFAULT;
     },
+    // favorites
     addToFavorites: (
       state,
       action: PayloadAction<{ recipe: Recipe; id: string }>

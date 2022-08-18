@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
 import React, { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import Card from "../components/ui/card/Card";
+import SearchRecipes from "../components/search/Search";
 import Cuisines from "../components/ui/cuisines/Cuisines";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { fetchSearch } from "../store/search/asyncActions";
@@ -23,27 +22,10 @@ const Search: FC = () => {
     <Conitainer>
       <Cuisines />
       <Title>
-        {items.length} suggested recipes '{params.name}'
+        {status === "loading" ? "∞" : items.length} suggested recipes '
+        {params.name}'
       </Title>
-      <Recipes
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {status === "loading" ? (
-          <h1>loading...</h1>
-        ) : (
-          items.map((recipe) => (
-            <Card
-              key={recipe.id}
-              title={recipe.title}
-              image={recipe.image}
-              id={recipe.id}
-            />
-          ))
-        )}
-      </Recipes>
+      <SearchRecipes />
     </Conitainer>
   );
 };
@@ -61,12 +43,6 @@ const Conitainer = styled.div`
   @media (max-width: 350px) {
     justify-content: center;
   }
-`;
-
-const Recipes = styled(motion.div)`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
 `;
 
 const Title = styled.p`

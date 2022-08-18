@@ -7,9 +7,8 @@ export const fetchSearch = createAsyncThunk(
   "cuisine/fetchCuisine",
   async (name: string) => {
     const { data } = await axios.get<{ results: Recipe[] }>(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}&number=12`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}&number=20`
     );
-    // localStorage.setItem("cuisine", JSON.stringify(data.results));
     return data;
   }
 );

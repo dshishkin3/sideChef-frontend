@@ -10,11 +10,6 @@ export const cuisines = [
     src: "../../slider-cuisines/asian.png",
   },
   {
-    id: 3,
-    name: "Brazilian",
-    src: "../../slider-cuisines/brazilian.png",
-  },
-  {
     id: 4,
     name: "Chinese",
     src: "../../slider-cuisines/chinese.png",
@@ -36,17 +31,12 @@ export const cuisines = [
   },
   {
     id: 8,
-    name: "American",
-    src: "../../slider-cuisines/american.png",
+    name: "Italian",
+    src: "../../slider-cuisines/italian.png",
   },
   {
     id: 9,
-    name: "Asian",
-    src: "../../slider-cuisines/asian.png",
-  },
-  {
-    id: 10,
-    name: "Brazilian",
-    src: "../../slider-cuisines/brazilian.png",
+    name: "Spanish",
+    src: "../../slider-cuisines/spanish.png",
   },
 ];

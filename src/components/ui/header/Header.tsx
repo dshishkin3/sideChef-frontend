@@ -1,6 +1,6 @@
 import { FC, useRef, useState } from "react";
 import styled from "styled-components";
-import { CgMenu } from "react-icons/cg";
+import { CgMenuRight } from "react-icons/cg";
 import { Link } from "react-router-dom";
 
 import useOnClickOutside from "../../../hooks/onClickOutside";
@@ -81,49 +81,18 @@ const LogoImage = styled.img`
 
 const LogoTitle = styled.p`
   letter-spacing: 2px;
+  opacity: 0.7;
 `;
 
-// const Search = styled.div`
-//   display: flex;
-//   align-items: center;
-//   border-radius: 30px;
-//   width: 600px;
-//   padding: 15px;
-//   background: #f5f5f5;
-
-//   @media (max-width: 1300px) {
-//     width: 100%;
-//     margin: 20px 0px 0px 0px;
-//   }
-
-//   @media (max-width: 700px) {
-//     padding: 10px;
-//   }
-// `;
-
-// const Input = styled.input`
-//   border: none;
-//   color: #afafaf;
-//   margin-left: 15px;
-//   width: 100%;
-
-//   &:focus {
-//     outline: none;
-//   }
-
-//   &::placeholder {
-//     color: #afafaf;
-//   }
-// `;
 const NavBlock = styled.div`
   @media (max-width: 1300px) {
     display: none;
   }
 `;
 
-const BugerMenu = styled(CgMenu)`
+const BugerMenu = styled(CgMenuRight)`
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 1.8em;
   display: none;
   @media (max-width: 1300px) {
     display: block;

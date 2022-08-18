@@ -33,5 +33,3 @@ export const veganRecipesSlice = createSlice({
 
 export const veganRecipesReducer = veganRecipesSlice.reducer;
 export const veganRecipesActions = veganRecipesSlice.actions;
-
-export const {} = veganRecipesSlice.actions;

@@ -33,5 +33,3 @@ export const cuisineSlice = createSlice({
 
 export const cuisineReducer = cuisineSlice.reducer;
 export const cuisineActions = cuisineSlice.actions;
-
-export const {} = cuisineSlice.actions;

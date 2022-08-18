@@ -31,6 +31,7 @@ export const AppRouter: FC = () => {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<Home />} />
         </Routes>
+        {/* notifications */}
         {error && <NotificationError />}
         {message && <NotificationSuccess />}
       </Layout>

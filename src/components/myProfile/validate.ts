@@ -1,4 +1,4 @@
-import { IUpdate } from "../../store/user/asyncActions";
+import { IUpdate } from "../../store/user/user.types";
 
 export function validateForm(form: IUpdate) {
   if (!form._id || form._id.length < 1) {

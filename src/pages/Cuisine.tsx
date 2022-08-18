@@ -1,68 +1,32 @@
-import { motion } from "framer-motion";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import Card from "../components/ui/card/Card";
+import CuisinesItems from "../components/cuisines/Cuisines";
+
 import Cuisines from "../components/ui/cuisines/Cuisines";
-import { useTypedSelector } from "../hooks/useTypedSelector";
+
 import { fetchCuisine } from "../store/cuisine/asyncActions";
-import { Cuisine } from "../store/cuisine/cuisine.types";
 import { useAppDispatch } from "../store/store";
 
 const CuisineBlock: FC = () => {
-  const [items, setItems] = useState<Cuisine[]>([]);
-  const [status, setStatus] = useState<"loading" | "error" | "completed">(
-    "loading"
-  );
-
-  // const { items, status } = useTypedSelector((state) => state.cuisine);
-
   const params = useParams();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // getRecipes();
-    getCuisine();
+    getRecipes();
   }, []);
 
-  // const getRecipes = async () => {
-  //   dispatch(fetchCuisine(String(params.name)));
-  //   localStorage.setItem("cuisine", JSON.stringify(items));
-  // };
-
-  const getCuisine = async () => {
-    const check = localStorage.getItem("cuisine");
-    if (check) {
-      setItems(JSON.parse(check));
-      setStatus("completed");
-    }
+  const getRecipes = async () => {
+    dispatch(fetchCuisine(String(params.name)));
   };
 
   return (
     <Conitainer>
       <Cuisines />
-      <Items
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {" "}
-        {status === "loading" ? (
-          <h1>loading...</h1>
-        ) : (
-          items.map((item) => (
-            <Card
-              key={item.id}
-              title={item.title}
-              image={item.image}
-              id={item.id}
-            />
-          ))
-        )}
-      </Items>
+      <Title>{params.name} cuinines</Title>
+      <CuisinesItems />
     </Conitainer>
   );
 };
@@ -84,8 +48,10 @@ const Conitainer = styled.div`
   }
 `;
 
-const Items = styled(motion.div)`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+const Title = styled.p`
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  margin-bottom: 30px;
 `;

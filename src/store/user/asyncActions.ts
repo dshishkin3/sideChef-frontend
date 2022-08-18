@@ -15,24 +15,7 @@ import {
   registerPending,
   setMessage,
 } from "./user.slice";
-
-interface ILogin {
-  email: string;
-  password: string;
-}
-
-interface IRegister {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export interface IUpdate {
-  _id: string;
-  username?: string;
-  email?: string;
-  password?: string;
-}
+import { ILogin, IRegister, IUpdate } from "./user.types";
 
 export const loginHandler = createAsyncThunk(
   "user/login",
@@ -82,7 +65,6 @@ export const updateHandler = createAsyncThunk(
       });
       fetchUser(form._id);
       dispatch(setMessage("User data updated"));
-      // alert("User data updated");
     } catch (error: any) {}
   }
 );

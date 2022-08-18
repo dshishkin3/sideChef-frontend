@@ -1,6 +1,7 @@
+import { FC } from "react";
+
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import { FC } from "react";
 
 const Progress: FC = () => {
   return (

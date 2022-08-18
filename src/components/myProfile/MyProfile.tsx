@@ -4,12 +4,9 @@ import styled from "styled-components";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useAppDispatch } from "../../store/store";
-import {
-  fetchUser,
-  IUpdate,
-  updateHandler,
-} from "../../store/user/asyncActions";
+import { fetchUser, updateHandler } from "../../store/user/asyncActions";
 import { logout, setError } from "../../store/user/user.slice";
+import { IUpdate, User } from "../../store/user/user.types";
 import Button from "../ui/button/Button";
 import Input from "../ui/input/Input";
 

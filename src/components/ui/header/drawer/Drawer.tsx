@@ -1,9 +1,11 @@
 import { FC } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import { FiHeart, FiMoon } from "react-icons/fi";
 import { Link } from "react-router-dom";
+
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { BiUser } from "react-icons/bi";
 
 interface IDrawerProps {
   isOpen: boolean;
@@ -21,24 +23,29 @@ const Drawer: FC<IDrawerProps> = ({ isOpen, setIsOpen, node }) => {
       <Blur isOpen={isOpen} />
       <Container isOpen={isOpen} ref={node}>
         <Header to="/profile" onClick={() => setIsOpen(false)}>
-          <Arrow />
-          <Name>Dmitry</Name>
-          <Image src="../../header/shef.png" />
+          <Image src="../../logo.png" />
+          <LogoTitle>
+            SIDE<b>SHEF</b>
+          </LogoTitle>
         </Header>
         <NavItems>
-          <Item>
-            <Link
-              to="/favorites"
-              style={{ display: "flex" }}
-              onClick={() => setIsOpen(false)}
-            >
-              <ItemName>Favorites</ItemName>
-              <Favorites />
-            </Link>
+          <Item
+            to="/profile"
+            style={{ display: "flex", alignItems: "center" }}
+            onClick={() => setIsOpen(false)}
+          >
+            <MdOutlineKeyboardArrowLeft size={20} color="#424242" />
+            <ItemName>Profile</ItemName>
+            <BiUser size={22} color="#424242" />
           </Item>
-          <Item>
-            <ItemName>Toggle theme</ItemName>
-            <Moon />
+          <Item
+            to="/favorites"
+            style={{ display: "flex", alignItems: "center", marginRight: 20 }}
+            onClick={() => setIsOpen(false)}
+          >
+            <MdOutlineKeyboardArrowLeft size={20} color="#424242" />
+            <ItemName>Favorites</ItemName>
+            <IoMdHeartEmpty size={22} color="#424242" />
           </Item>
         </NavItems>
       </Container>
@@ -101,36 +108,30 @@ const Header = styled(Link)`
   padding-right: 40px;
 `;
 
-const Arrow = styled(MdOutlineKeyboardArrowLeft)`
-  font-size: 2em;
-  color: #636363;
-  margin-right: 20px;
-`;
-
-const Name = styled.p`
-  font-weight: 600;
-  margin-right: 15px;
-`;
-
 const Image = styled.img`
-  width: 45px;
+  margin-right: 10px;
+  width: 38px;
+`;
+
+const LogoTitle = styled.p`
+  letter-spacing: 2px;
+  opacity: 0.7;
 `;
 
 const NavItems = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   padding-right: 20px;
 `;
 
-const Item = styled.div`
+const Item = styled(Link)`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-bottom: 20px;
+  padding: 20px 0px 10px 0px;
 
   &:hover {
-    color: #ff950a;
+    background-color: #fbfbfb;
     transition: all 0.3s;
   }
 `;
@@ -138,17 +139,7 @@ const Item = styled.div`
 const ItemName = styled.p`
   margin-right: 15px;
   font-size: 18px;
-`;
-
-const Favorites = styled(FiHeart)`
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 1.8em;
-`;
-
-const Moon = styled(FiMoon)`
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 1.8em;
-  margin-right: 30px;
+  font-weight: 500;
+  color: #424242;
+  margin-left: 15px;
 `;

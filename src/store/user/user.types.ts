@@ -21,3 +21,21 @@ export enum Status {
   SUCCESS = "completed",
   ERROR = "error",
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
+
+export interface IRegister {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export interface IUpdate {
+  _id: string;
+  username?: string;
+  email?: string;
+  password?: string;
+}

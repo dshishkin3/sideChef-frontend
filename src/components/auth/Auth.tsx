@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 import { BiHide } from "react-icons/bi";
 
@@ -92,14 +92,15 @@ export default Auth;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 80vh;
   max-width: 400px;
   margin: 0 auto;
+  padding-top: 80px;
 
   @media (max-width: 450px) {
     margin: 20px 20px;
+    padding-top: 30px;
   }
 `;
 

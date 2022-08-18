@@ -33,5 +33,3 @@ export const recipeSlice = createSlice({
 
 export const recipeReducer = recipeSlice.reducer;
 export const recipeActions = recipeSlice.actions;
-
-export const {} = recipeSlice.actions;
