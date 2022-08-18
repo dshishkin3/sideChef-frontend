@@ -2,7 +2,7 @@
   "extends": ["react-app", "react-app/jest"],
   "rules": {
     "no-unused-vars": "warn",
-    "no-console": "warn",
+    "no-console": "error",
     "quotes": ["error", "double"],
     "prefer-const": "error",
     "indent": ["warn", 2],
