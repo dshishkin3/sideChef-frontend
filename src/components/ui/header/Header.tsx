@@ -28,7 +28,7 @@ const Header: FC = () => {
             <Logo>
               <LogoImage src="../../logo.png" alt="logo" />
               <LogoTitle>
-                SIDE<b>SHEF</b>
+                SIDE<b>CHEF</b>
               </LogoTitle>
             </Logo>
           </Link>
