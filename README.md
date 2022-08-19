@@ -13,7 +13,7 @@
 
 <h2><b>🛠&nbsp;&nbsp;stack:</b></h2>
 
-- <b>react (next.js)</b>
+- <b>react</b>
 - <b>typescript</b>
 - <b>redux (toolkit)</b>
 - <b>styled components</b>
